@@ -5,9 +5,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel = "stylesheet" href = "${ pageContext.request.contextPath } /css/bootstrap.min.css">
 </head>
 <body>
-	<h1>Hoang Viet Duc trum HD</h1>
+	<h1 class="text-danger">Hoang Viet Duc  HD</h1>
 
 </body>
 </html>
