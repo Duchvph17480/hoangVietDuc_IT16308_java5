@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class loginController {
 	@GetMapping("/login")
-	public String login(@RequestParam("mail") String mail, @RequestParam("pass") String pass) {
-		System.out.println(mail+pass);
+	public String login() {
+		return "login";
+	}
+
+	@PostMapping("/login")
+	public String loginn(com.IT16308.beans.login login) {
+		System.out.println(login.getEmail());
 		return "login";
 	}
 }

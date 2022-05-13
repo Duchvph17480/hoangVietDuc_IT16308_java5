@@ -7,12 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="POST" action="/hoangVietDuc_IT16308/login">
-		<p>Mail</p>
-		<input type="email" name="mail">
-		<p>Pass</p>
-		<input type="password" name=pass>
-		<button>login</button>
+	<form action="/hoangVietDuc_IT16308/ok" method="POST">
+		<button>OK 1</button>
+		<button formmethod="get">OK2</button>
+		<button formaction="/hoangVietDuc_IT16308/ok?">OK 3</button>
 	</form>
 </body>
 </html>
