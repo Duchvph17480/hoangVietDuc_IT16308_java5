@@ -10,7 +10,7 @@
 	<form action="/hoangVietDuc_IT16308/ok" method="POST">
 		<button>OK 1</button>
 		<button formmethod="get">OK2</button>
-		<button formaction="/hoangVietDuc_IT16308/ok?">OK 3</button>
+		<button formaction="/hoangVietDuc_IT16308/ok?x">OK 3</button>
 	</form>
 </body>
 </html>
