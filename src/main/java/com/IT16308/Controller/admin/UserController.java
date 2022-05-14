@@ -39,27 +39,27 @@ public class UserController {
 
 	@GetMapping(value = "/create")
 	public String create() {
-		return "";
+		return "admin/users/create";
 	}
 
 	@PostMapping(value = "/store")
 	public String store() {
-		return "";
+		return "redirect:/admin/users";
 	}
 
-	@GetMapping(value = "/edit", params = "id")
+	@GetMapping(value = "/edit/{id}")
 	public String edit() {
-		return "";
+		return "admin/users/edit";
 	}
 
-	@PostMapping(value = "/update", params = "id")
+	@PostMapping(value = "/update/{id}")
 	public String update() {
-		return "";
+		return "redirect:/admin/users";
 	}
 
-	@PostMapping(value = "/delete", params = "id")
+	@PostMapping(value = "/delete/{id}")
 	public String delete() {
-		return "";
+		return "redirect:/admin/users";
 	}
 
 }
