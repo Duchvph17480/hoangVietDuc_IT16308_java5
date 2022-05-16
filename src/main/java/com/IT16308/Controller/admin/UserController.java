@@ -1,5 +1,7 @@
 package com.IT16308.Controller.admin;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.IT16308.model.User;
 
 @Controller
 @RequestMapping("/admin/users")
@@ -48,7 +52,22 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/edit/{id}")
-	public String edit() {
+	public String edit(Model model) {
+		User user = new User();
+		user.setId(1);
+		user.setName("Hoang Viet Duc");
+		user.setStudentCode("ph17480");
+		user.setEmail("duchvph17480@fpt.edu.vn");
+		user.setPassword("duc123456");
+		user.setPasswordConfirm("duc123456");
+		user.setDob(new Date(2002,12,14));
+		user.setAvatar("");
+		user.setRole(1);
+		user.setGender(1);
+		user.setStatus(1);
+		
+		model.addAttribute("user",user);
+		
 		return "admin/users/edit";
 	}
 

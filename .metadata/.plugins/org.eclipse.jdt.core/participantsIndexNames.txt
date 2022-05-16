@@ -1,0 +1,15 @@
+INDEX VERSION 1.131
+C:\Users\ACER\Documents\GitHub\hoangVietDuc_IT16308\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3536529172.index
+\SP22B2_SOF3011_IT16308\src\main\java
+C:\Users\ACER\Documents\GitHub\hoangVietDuc_IT16308\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3816451444.index
+\ASS_PH17480\src\main\java
+C:\Users\ACER\Documents\GitHub\hoangVietDuc_IT16308\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3223016262.index
+\SP22B2_SOF3011_IT16308\src\main\java
+C:\Users\ACER\Documents\GitHub\hoangVietDuc_IT16308\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\712615726.index
+\ASS_PH17480\src\main\java
+C:\Users\ACER\Documents\GitHub\hoangVietDuc_IT16308\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1117101265.index
+\SP22B2_SOF3011_IT16308\src\main\java
+C:\Users\ACER\Documents\GitHub\hoangVietDuc_IT16308\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\229037554.index
+\ASS_PH17480\src\main\java
+C:\Users\ACER\Documents\GitHub\hoangVietDuc_IT16308\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3913172907.index
+\ASS_PH17480\src\main\java
