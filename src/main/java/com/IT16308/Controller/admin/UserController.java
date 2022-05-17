@@ -3,10 +3,12 @@ package com.IT16308.Controller.admin;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,13 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.IT16308.model.User;
+import com.IT16308.dto.User;
 
 @Controller
 @RequestMapping("/admin/users")
 public class UserController {
 	@Autowired
 	private HttpServletRequest request;
+
 	@GetMapping()
 	public String index() {
 		return "admin/users/index";
@@ -33,11 +36,9 @@ public class UserController {
 //
 //		return "admin/users/show";
 //	}
-	@GetMapping(value="{id}") 
-	public String show( Model model,
-		@PathVariable("id") Integer id 
-	) {
-		model.addAttribute("id",id);
+	@GetMapping(value = "{id}")
+	public String show(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("id", id);
 		return "admin/users/show";
 	}
 
@@ -60,20 +61,29 @@ public class UserController {
 		user.setEmail("duchvph17480@fpt.edu.vn");
 		user.setPassword("duc123456");
 		user.setPasswordConfirm("duc123456");
-		user.setDob(new Date(2002,12,14));
+		user.setDob(new Date(2002, 12, 14));
 		user.setAvatar("");
 		user.setRole(1);
 		user.setGender(1);
 		user.setStatus(1);
-		
-		model.addAttribute("user",user);
-		
+
+		model.addAttribute("user", user);
+
 		return "admin/users/edit";
 	}
 
 	@PostMapping(value = "/update/{id}")
-	public String update() {
-		return "redirect:/admin/users";
+	public String update(Model model, @Valid User user, BindingResult result) {
+		if(result.hasErrors()) {
+			System.out.println("có lỗi");
+			//return "redirect:/admin/users/edit/1";
+			model.addAttribute("errors",result.getAllErrors());
+			return "admin/users/edit";
+		}else {
+			System.out.println("k có lỗi");
+			return "redirect:/admin/users";
+		}
+		
 	}
 
 	@PostMapping(value = "/delete/{id}")
