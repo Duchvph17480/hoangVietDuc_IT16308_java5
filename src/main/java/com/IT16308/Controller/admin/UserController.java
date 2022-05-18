@@ -76,8 +76,6 @@ public class UserController {
 	public String update(Model model, @Valid User user, BindingResult result) {
 		if(result.hasErrors()) {
 			System.out.println("có lỗi");
-			//return "redirect:/admin/users/edit/1";
-			model.addAttribute("errors",result.getAllErrors());
 			return "admin/users/edit";
 		}else {
 			System.out.println("k có lỗi");
