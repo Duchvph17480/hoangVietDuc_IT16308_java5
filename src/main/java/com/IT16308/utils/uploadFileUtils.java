@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class uploadFileUtils {
 
 	public File handleUploadFile(MultipartFile uploadFile) {
-		String folderPath = "\\Users\\ACER\\Documents\\GitHub\\hoangVietDuc_IT16308\\src\\main\\webapp\\storage";
+		String folderPath = "C:\\Users\\ACER\\Documents\\GitHub\\hoangVietDuc_IT16308\\src\\main\\webapp\\storage";
 		File myUploadFolder = new File(folderPath);
 
 		if (!myUploadFolder.exists()) { // ktra sự tồn tại của folder
