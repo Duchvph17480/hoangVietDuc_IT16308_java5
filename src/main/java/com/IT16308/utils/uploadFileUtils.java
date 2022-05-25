@@ -3,6 +3,7 @@ package com.IT16308.utils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,8 @@ public class uploadFileUtils {
 		// lưu file vào thư mục đã chọn
 		File saveFile = null;
 		try {
+			String uuid= UUID.randomUUID().toString();
+			String fileName= uuid+"_"+uploadFile.getOriginalFilename();
 			saveFile = new File(myUploadFolder, uploadFile.getOriginalFilename());
 			uploadFile.transferTo(saveFile);
 		} catch (IllegalStateException | IOException e) {

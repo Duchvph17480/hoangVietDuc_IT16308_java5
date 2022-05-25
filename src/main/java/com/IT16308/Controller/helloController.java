@@ -31,7 +31,7 @@ public class helloController {
 		String	nameValue= !name.isPresent()?"IT16308":name.get();
 		ahihi.addAttribute("ahihi", nameValue);
 		User user = new User();
-		user.setName("Hoang Viet Duc");
+		//user.setName("Hoang Viet Duc");
 		ahihi.addAttribute("myus", user);
 
 		return "hello";
