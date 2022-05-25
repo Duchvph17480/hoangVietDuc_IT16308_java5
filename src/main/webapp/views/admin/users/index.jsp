@@ -41,24 +41,25 @@
 			</thead>
 
 			<tbody>
-				<tr>
-					<td>02</td>
-					<td>duc</td>
-					<td>duchvph17480</td>
-					<td>admin</td>
-					<td>hoat dong</td>
-					<td><a class="btn btn-primary"
-						href="${ pageContext.request.contextPath }/admin/users/edit/1">Update</a>
-					</td>
-					<td>
-						<form
-							action="${ pageContext.request.contextPath }/admin/users/delete/1"
-							method="POST">
-							<button class="btn btn-danger">Delete</button>
-						</form>
-					</td>
-				</tr>
-
+				<c:forEach items="${listUser}" var ="user">
+					<tr>
+						<td>${user.id}</td>
+						<td>${user.username}</td>
+						<td>${user.password}</td>
+						<td>${user.email}</td>
+						<td>hoat dong</td>
+						<td><a class="btn btn-primary"
+							href="${ pageContext.request.contextPath }/admin/users/edit/1">Update</a>
+						</td>
+						<td>
+							<form
+								action="${ pageContext.request.contextPath }/admin/users/delete/1"
+								method="POST">
+								<button class="btn btn-danger">Delete</button>
+							</form>
+						</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

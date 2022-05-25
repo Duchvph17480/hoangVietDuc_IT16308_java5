@@ -1,6 +1,7 @@
 package com.IT16308.Controller.admin;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -16,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.IT16308.dto.User;
+import com.IT16308.entity.User;
+import com.IT16308.repositories.UserRepository;
 
 @Controller
 @RequestMapping("/admin/users")
@@ -24,8 +26,13 @@ public class UserController {
 	@Autowired
 	private HttpServletRequest request;
 
+	@Autowired
+	private UserRepository userRepo;
+
 	@GetMapping()
-	public String index() {
+	public String index(Model model) {
+		List<User> listUser = this.userRepo.findAll();
+		model.addAttribute("listUser", listUser);
 		return "admin/users/index";
 	}
 
@@ -54,34 +61,34 @@ public class UserController {
 
 	@GetMapping(value = "/edit/{id}")
 	public String edit(Model model) {
-		User user = new User();
-		user.setId(1);
-		user.setName("Hoang Viet Duc");
-		user.setStudentCode("ph17480");
-		user.setEmail("duchvph17480@fpt.edu.vn");
-		user.setPassword("duc123456");
-		user.setPasswordConfirm("duc123456");
-		user.setDob(new Date(2002, 12, 14));
-		user.setAvatar("");
-		user.setRole(1);
-		user.setGender(1);
-		user.setStatus(1);
+//		User user = new User();
+//		user.setId(1);
+//		user.setName("Hoang Viet Duc");
+//		user.setStudentCode("ph17480");
+//		user.setEmail("duchvph17480@fpt.edu.vn");
+//		user.setPassword("duc123456");
+//		user.setPasswordConfirm("duc123456");
+//		user.setDob(new Date(2002, 12, 14));
+//		user.setAvatar("");
+//		user.setRole(1);
+//		user.setGender(1);
+//		user.setStatus(1);
 
-		model.addAttribute("user", user);
+		// model.addAttribute("user", user);
 
 		return "admin/users/edit";
 	}
 
 	@PostMapping(value = "/update/{id}")
 	public String update(Model model, @Valid User user, BindingResult result) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			System.out.println("có lỗi");
 			return "admin/users/edit";
-		}else {
+		} else {
 			System.out.println("k có lỗi");
 			return "redirect:/admin/users";
 		}
-		
+
 	}
 
 	@PostMapping(value = "/delete/{id}")
