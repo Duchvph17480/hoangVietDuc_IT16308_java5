@@ -83,6 +83,7 @@ public class UserController {
 	@PostMapping(value = "/update/{id}")
 	public String update(Model model, @Valid UserDTO user, BindingResult result) {
 		if (result.hasErrors()) {
+			model.addAttribute("user", user);
 			return "admin/users/edit";
 		} else {
 			User entity = this.userMapper.convertToEntity(user);

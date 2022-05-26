@@ -49,11 +49,11 @@
 						<td>${user.email}</td>
 						<td>hoat dong</td>
 						<td><a class="btn btn-primary"
-							href="${ pageContext.request.contextPath }/admin/users/edit/1">Update</a>
+							href="${ pageContext.request.contextPath }/admin/users/edit/${user.id}">Update</a>
 						</td>
 						<td>
 							<form
-								action="${ pageContext.request.contextPath }/admin/users/delete/1"
+								action="${ pageContext.request.contextPath }/admin/users/delete/${user.id}"
 								method="POST">
 								<button class="btn btn-danger">Delete</button>
 							</form>
