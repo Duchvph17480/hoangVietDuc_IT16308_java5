@@ -9,17 +9,13 @@ import javax.validation.constraints.Null;
 
 import lombok.Data;
 @Data
-public class User {
+public class UserDTO {
 	@Null
 	private Integer id;
 	
 	@NotNull
 	@NotBlank
-	private String name;
-	
-	@NotNull
-	@NotBlank
-	private String studentCode;
+	private String username;
 	
 	@NotNull
 	@NotBlank
@@ -30,24 +26,18 @@ public class User {
 	@NotBlank
 	private String password;
 	
-	@NotNull
-	@NotBlank
-	private String passwordConfirm;
-	
-	@NotNull
-	private Date dob;
+//	@NotNull
+//	@NotBlank
+//	private String passwordConfirm;
 	
 	@NotNull
 	@NotBlank
-	private String avatar;
+	private String photo;
+
+	@NotNull
+	private Integer activated;
 	
 	@NotNull
-	private Integer role;
-	
-	@NotNull
-	private Integer gender;
-	
-	@NotNull
-	private Integer status;
+	private Integer admin;
 
 }

@@ -35,8 +35,8 @@
 			<input type="hidden" name="_method" value="put" />
 			<div class="form-group mt-3">
 				<label for="name">Name</label>
-			    <form:input path="name" class="form-control" autocomplete="off" />
-				<form:errors path="name" element="span" cssClass="text-danger" />
+			    <form:input path="username" class="form-control" autocomplete="off" />
+				<form:errors path="username" element="span" cssClass="text-danger" />
 			</div>
 			<div class="form-group mt-3">
 				<label for="email">Email</label>
@@ -49,29 +49,24 @@
 				<form:errors path="password" element="span" cssClass="text-danger" />
 			</div>
 			<div class="form-group mt-3">
-				<label for="email">Date</label>
-			    <form:input path="dob" class="form-control" id="dob" name="dob" autocomplete="off" />
-				
-			</div>
-			<div class="form-group mt-3">
-				<label for="role">Tài khoản</label>
-				<form:select path="role" id="role" class="form-control">
-					<form:option value="2">Admin</form:option>
-					<form:option value="1">Member</form:option>
+				<label for="admin">Tài khoản</label>
+				<form:select path="admin" id="role" class="form-control">
+					<form:option value="1">Admin</form:option>
+					<form:option value="0">Member</form:option>
 				</form:select>
-				<form:errors path="role" element="span" cssClass="text-danger" />
+				<form:errors path="admin" element="span" cssClass="text-danger" />
 			</div>
 			<div class="form-group mt-3">
 				<label for="photo">Image</label>
-			    <input type="file" class="form-control" id="avatar" name="avatar">
+			    <input type="file" class="form-control" id="photo" name="photo">
 			</div>
 			<div class="form-group mt-3">
-				<label for="status">Trạng thái</label>
-				<form:select path="status" id="status" class="form-control">
+				<label for="activated">Trạng thái</label>
+				<form:select path="activated" id="status" class="form-control">
 					<form:option value="1">Đang hoạt động</form:option>
 					<form:option value="0">Vô hiệu hóa</form:option>
 				</form:select>
-				<form:errors path="status" element="span" cssClass="text-danger" />
+				<form:errors path="activated" element="span" cssClass="text-danger" />
 			</div>
 			<div class="form-group mt-3">
 				<button class="btn btn-primary">Submit</button>

@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.IT16308.dto.UserDTO;
 import com.IT16308.entity.User;
+import com.IT16308.mappers.UserMapper;
 import com.IT16308.repositories.UserRepository;
 
 @Controller
@@ -28,6 +30,9 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private UserMapper userMapper;
 
 	@GetMapping()
 	public String index(Model model) {
@@ -44,8 +49,11 @@ public class UserController {
 //		return "admin/users/show";
 //	}
 	@GetMapping(value = "{id}")
-	public String show(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("id", id);
+	public String show(Model model, @PathVariable("id") User entity) {
+		
+		UserDTO userDTO= this.userMapper.convertToDTO(entity);
+		model.addAttribute("user", userDTO);
+		
 		return "admin/users/show";
 	}
 
@@ -55,44 +63,38 @@ public class UserController {
 	}
 
 	@PostMapping(value = "/store")
-	public String store() {
-		return "redirect:/admin/users";
+	public String store(Model model, @Valid UserDTO user, BindingResult result) {
+		if (result.hasErrors()) {
+			return "admin/users/create";
+		} else {
+			User entity = this.userMapper.convertToEntity(user);
+			this.userRepo.save(entity);
+			return "redirect:/admin/users";
+		}
 	}
 
 	@GetMapping(value = "/edit/{id}")
-	public String edit(Model model) {
-//		User user = new User();
-//		user.setId(1);
-//		user.setName("Hoang Viet Duc");
-//		user.setStudentCode("ph17480");
-//		user.setEmail("duchvph17480@fpt.edu.vn");
-//		user.setPassword("duc123456");
-//		user.setPasswordConfirm("duc123456");
-//		user.setDob(new Date(2002, 12, 14));
-//		user.setAvatar("");
-//		user.setRole(1);
-//		user.setGender(1);
-//		user.setStatus(1);
-
-		// model.addAttribute("user", user);
-
+	public String edit(Model model, @PathVariable("id") User entity) {
+		UserDTO user = this.userMapper.convertToDTO(entity);
+		model.addAttribute("user", entity);
 		return "admin/users/edit";
 	}
 
 	@PostMapping(value = "/update/{id}")
-	public String update(Model model, @Valid User user, BindingResult result) {
+	public String update(Model model, @Valid UserDTO user, BindingResult result) {
 		if (result.hasErrors()) {
-			System.out.println("có lỗi");
 			return "admin/users/edit";
 		} else {
-			System.out.println("k có lỗi");
+			User entity = this.userMapper.convertToEntity(user);
+			this.userRepo.save(entity);
 			return "redirect:/admin/users";
 		}
 
 	}
 
 	@PostMapping(value = "/delete/{id}")
-	public String delete() {
+	public String delete( @PathVariable("id") Integer id) {
+		this.userRepo.deleteById(id);
 		return "redirect:/admin/users";
 	}
 
