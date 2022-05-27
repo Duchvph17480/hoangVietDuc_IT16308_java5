@@ -12,7 +12,6 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
 		<a class="navbar-brand" href="#">Navbar</a>
-
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="#">Users</a>
@@ -25,47 +24,47 @@
 		</div>
 	</nav>
 
-	<div class="mt-5 col-10 offset-1">
+	<div class="mt-5 col-10 offset-1 border border-primary p-2">
 		<form:form method="POST"
 			action="/hoangVietDuc_IT16308/admin/users/store"
 			modelAttribute="user">
-			<div>
+			<div class="form-group mt-3">
 				<label>Email</label>
-				<form:input path="email" type="email" />
+				<form:input path="email" type="email" class="form-control"/>
 				<form:errors path="email" element="span" cssClass="text-danger" />
 			</div>
-			<div>
+			<div class="form-group mt-3">
 				<label>Username</label>
-				<form:input path="username" />
+				<form:input path="username" class="form-control"/>
 				<form:errors path="username" element="span" cssClass="text-danger" />
 			</div>
-			<div>
+			<div class="form-group mt-3">
 				<label>Password</label>
-				<form:password path="password" />
+				<form:password path="password" class="form-control" />
 				<form:errors path="password" element="span" cssClass="text-danger" />
 			</div>
 			<div class="form-group mt-3">
 				<label for="photo">Image</label>
-				<form:input path="photo" name="photo" id="photo" type="file"/>
+				<form:input path="photo" name="photo" id="photo" type="file" class="form-control"/>
 			    <form:errors path="photo" element="span" cssClass="text-danger" />
 			</div>
-			<div>
+			<div class="form-group mt-3">
 				<label>Activated</label>
-				<form:select path="activated">
+				<form:select path="activated" class="form-control">
 					<form:option value="0">Hoạt Động</form:option>
 					<form:option value="1">K HD</form:option>
 					<form:errors path="activated" element="span" cssClass="text-danger" />
 				</form:select>
 			</div>
-			<div>
+			<div class="form-group mt-3">
 				<label>Admin</label>
-				<form:select path="admin">
+				<form:select path="admin" class="form-control">
 					<form:option value="0">Member</form:option>
 					<form:option value="1">Admin</form:option>
 					<form:errors path="admin" element="span" cssClass="text-danger" />
 				</form:select>
 			</div>
-			<button>Save</button>
+			<button class="btn btn-primary">Save</button>
 		</form:form>
 	</div>
 </body>
