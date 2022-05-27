@@ -43,21 +43,24 @@ public class UserController {
 	@GetMapping()
 	public String index(Model model)
 	{
-		List<User> listUser;
-		String sortBy= request.getParameter("sort_by");
-		if (sortBy!=null) {
-			Sort sort;
-			String sortDrirection = request.getParameter("sort_direction");
-			if (sortDrirection==null||sortDrirection.equals("asc")) {
-				 sort = Sort.by(Direction.ASC, sortBy);
-			}else {
-				 sort = Sort.by(Direction.DESC, sortBy);
-			}
-			listUser = this.userRepo.findAll(sort);
-		}else {
-			listUser = this.userRepo.findAll();
-		}
-		model.addAttribute("listUser", listUser);
+		String sortBy = request.getParameter("sort_by");
+		String sortDirection = request.getParameter("sort_direction");
+		String pageParam = request.getParameter("page");
+		String limitParam = request.getParameter("limit");
+
+		String sortField = sortBy == null ? "id" : sortBy;
+		Sort sort = ( sortDirection == null || sortDirection.equals("asc") ) ?
+			Sort.by(Direction.ASC, sortField):
+			Sort.by(Direction.DESC, sortField);
+
+		int page = pageParam == null ? 0 : Integer.parseInt(pageParam);
+		int limit = limitParam == null ? 1 : Integer.parseInt(limitParam);
+		Pageable pageable = PageRequest.of(page, limit, sort);
+		
+		Page pageData = this.userRepo.findAll(pageable);
+
+		model.addAttribute("pageData", pageData);
+		
 		return "admin/users/index";
 	}
 
