@@ -7,10 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,43 +33,51 @@ import com.IT16308.repositories.UserRepository;
 public class UserController {
 	@Autowired
 	private HttpServletRequest request;
-
+	
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private UserMapper userMapper;
 
 	@GetMapping()
-	public String index(Model model) {
-		List<User> listUser = this.userRepo.findAll();
+	public String index(Model model)
+	{
+		List<User> listUser;
+		String sortBy= request.getParameter("sort_by");
+		if (sortBy!=null) {
+			Sort sort;
+			String sortDrirection = request.getParameter("sort_direction");
+			if (sortDrirection==null||sortDrirection.equals("asc")) {
+				 sort = Sort.by(Direction.ASC, sortBy);
+			}else {
+				 sort = Sort.by(Direction.DESC, sortBy);
+			}
+			listUser = this.userRepo.findAll(sort);
+		}else {
+			listUser = this.userRepo.findAll();
+		}
 		model.addAttribute("listUser", listUser);
 		return "admin/users/index";
 	}
 
-//	@GetMapping(params = "id") // dựa vào tham số id để biết req có vào hàm này k . có param là id thì đi vào , k thì next
-//	public String show(
-//		@RequestParam(name = "id") Integer id // bóc dữ liệu từ request đưa vào biến
-//	) {
-//
-//		return "admin/users/show";
-//	}
+
 	@GetMapping(value = "{id}")
 	public String show(Model model, @PathVariable("id") User entity) {
-		
-		UserDTO userDTO= this.userMapper.convertToDTO(entity);
+
+		UserDTO userDTO = this.userMapper.convertToDTO(entity);
 		model.addAttribute("user", userDTO);
-		
+
 		return "admin/users/show";
 	}
 
 	@GetMapping(value = "/create")
-	public String create() {
+	public String create(@ModelAttribute("user") UserDTO user) {
 		return "admin/users/create";
 	}
 
 	@PostMapping(value = "/store")
-	public String store(Model model, @Valid UserDTO user, BindingResult result) {
+	public String store(Model model, @Valid @ModelAttribute("user") UserDTO user, BindingResult result) {
 		if (result.hasErrors()) {
 			return "admin/users/create";
 		} else {
@@ -81,20 +95,19 @@ public class UserController {
 	}
 
 	@PostMapping(value = "/update/{id}")
-	public String update(Model model, @Valid UserDTO user, BindingResult result) {
+	public String update(Model model, @Valid @ModelAttribute("user") UserDTO user, BindingResult result) {
 		if (result.hasErrors()) {
-			model.addAttribute("user", user);
+			System.out.println("có lỗi");
 			return "admin/users/edit";
 		} else {
 			User entity = this.userMapper.convertToEntity(user);
 			this.userRepo.save(entity);
 			return "redirect:/admin/users";
 		}
-
 	}
 
 	@PostMapping(value = "/delete/{id}")
-	public String delete( @PathVariable("id") Integer id) {
+	public String delete(@PathVariable("id") Integer id) {
 		this.userRepo.deleteById(id);
 		return "redirect:/admin/users";
 	}

@@ -31,7 +31,7 @@
 		<form:form
 			modelAttribute="user"
 			method="POST"
-			action="${ pageContext.request.contextPath }/admin/users/update/1">
+			action="${ pageContext.request.contextPath }/admin/users/update/${user.id}">
 			<input type="hidden" name="_method" value="put" />
 			<div class="form-group mt-3">
 				<label for="name">Name</label>
@@ -50,7 +50,7 @@
 			</div>
 			<div class="form-group mt-3">
 				<label for="admin">Tài khoản</label>
-				<form:select path="admin" id="role" class="form-control">
+				<form:select path="admin" id="admin" class="form-control">
 					<form:option value="1">Admin</form:option>
 					<form:option value="0">Member</form:option>
 				</form:select>
@@ -58,11 +58,12 @@
 			</div>
 			<div class="form-group mt-3">
 				<label for="photo">Image</label>
-			    <input type="file" class="form-control" id="photo" name="photo">
+				<form:input path="photo" name="photo" id="photo" type="file"/>
+			    <form:errors path="photo" element="span" cssClass="text-danger" />
 			</div>
 			<div class="form-group mt-3">
-				<label for="activated">Trạng thái</label>
-				<form:select path="activated" id="status" class="form-control">
+				<label for="status">Trạng thái</label>
+				<form:select path="activated" id="activated" class="form-control">
 					<form:option value="1">Đang hoạt động</form:option>
 					<form:option value="0">Vô hiệu hóa</form:option>
 				</form:select>
