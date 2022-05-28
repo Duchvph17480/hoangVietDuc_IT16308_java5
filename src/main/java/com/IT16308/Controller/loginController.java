@@ -31,14 +31,15 @@ public class loginController {
 		User entity=this.userRepo.finByEmail(email);
 		if (entity == null) {
 			System.out.println("1");
-			session.setAttribute("error", "sai email hoặc password");
+			session.setAttribute("error", "sai email");
 			return "redirect:/login";
 		}
 		boolean checkpw=HashUtil.verify(password, entity.getPassword());
-		if (checkpw==true) {
-			session.setAttribute("error", "sai email hoặc password");
+		if (!checkpw) {
+			session.setAttribute("error", "sai  password");
 			return "redirect:/login";
 		}
+		session.setAttribute("user", entity);
 		return "redirect:/admin/users";
 	}
 }
