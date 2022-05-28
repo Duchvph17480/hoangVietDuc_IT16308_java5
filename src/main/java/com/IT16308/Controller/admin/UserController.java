@@ -27,6 +27,7 @@ import com.IT16308.dto.UserDTO;
 import com.IT16308.entity.User;
 import com.IT16308.mappers.UserMapper;
 import com.IT16308.repositories.UserRepository;
+import com.IT16308.utils.HashUtil;
 
 @Controller
 @RequestMapping("/admin/users")
@@ -85,6 +86,8 @@ public class UserController {
 			return "admin/users/create";
 		} else {
 			User entity = this.userMapper.convertToEntity(user);
+			String hashedPw = HashUtil.hash(entity.getPassword());
+			entity.setPassword(hashedPw);
 			this.userRepo.save(entity);
 			return "redirect:/admin/users";
 		}

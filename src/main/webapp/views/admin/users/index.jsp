@@ -94,13 +94,16 @@
 			</tbody>
 		</table>
 		<div>
-			<ul class="pagination">
-				<c:forEach begin="0" end="${ pageData.totalPages - 1 }" varStatus="page">
-					<li class="page-item">
-						<a class="page-link" href="${ pageContext.request.contextPath }/admin/users?page=${ page.index }">${ page.index + 1 }</a>
-					</li>
-				</c:forEach>
-			</ul>
+			<c:if test="${not empty pageData.content }">
+				<ul class="pagination">
+					<c:forEach begin="0" end="${ pageData.totalPages - 1 }"
+						varStatus="page">
+						<li class="page-item"><a class="page-link"
+							href="${ pageContext.request.contextPath }/admin/users?page=${ page.index }">${ page.index + 1 }</a>
+						</li>
+					</c:forEach>
+				</ul>
+			</c:if>
 		</div>
 	</div>
 </body>
