@@ -43,9 +43,9 @@
 			    <form:input path="email" class="form-control" id="email" name="email" autocomplete="off" />
 				<form:errors path="email" element="span" cssClass="text-danger" />
 			</div>
-			<div class="form-group mt-3">
+			<div class="form-group mt-3" style="display:none">
 				<label for="password">Password</label>
-				<form:password path="password" value="*********" name="password" class="form-control" readonly="true"/>
+				<form:input path="password" name="password" class="form-control" readonly="true"/>
 				<form:errors path="password" element="span" cssClass="text-danger" />
 			</div>
 			<div class="form-group mt-3">

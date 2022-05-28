@@ -21,8 +21,7 @@ public class UserDTO {
 	@Email
 	private String email;
 	
-	@NotNull
-	@NotBlank
+
 	private String password;
 	
 	@NotNull
